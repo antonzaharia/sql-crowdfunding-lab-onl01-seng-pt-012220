@@ -29,7 +29,8 @@ def selects_the_titles_and_amount_over_goal_of_all_projects_that_have_met_their_
   FROM projects
   INNER JOIN pledges
   ON pledges.user_id = users.id
-  
+  GROUP BY users.name
+  HAVING over_goal > funding_goal;
   
   "
 end
