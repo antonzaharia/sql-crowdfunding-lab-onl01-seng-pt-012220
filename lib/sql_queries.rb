@@ -35,10 +35,12 @@ def selects_the_titles_and_amount_over_goal_of_all_projects_that_have_met_their_
 end
 
 def selects_user_names_and_amounts_of_all_pledges_grouped_by_name_then_orders_them_by_the_summed_amount
-  "SELECT users.names, SUM(pledges.amount)
+  "SELECT users.names, SUM(pledges.amount) AS summed_amount
   FROM users
   JOIN pledges
-  ON 
+  ON pledges.users_id = users.id
+  GROUP BY users.name 
+  ORDER BY summed_amount ASC;
   "
 end
 
